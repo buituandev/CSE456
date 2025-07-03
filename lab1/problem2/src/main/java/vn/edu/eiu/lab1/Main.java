@@ -17,6 +17,18 @@ public class Main {
 
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to database successfully");
+            
+            //Insert data into table
+            var stringSql = "insert into student(ID, FirstName, LastName, YOB, GPA) values ROW (?,?,?,?,?)";
+            PreparedStatement stmt = conn.prepareStatement(stringSql);
+            stmt.setString(1, "S005");
+            stmt.setString(2, "Lan");
+            stmt.setString(3, "Thi");
+            stmt.setInt(4, 2006);
+            stmt.setDouble(5, 3.5);
+            stmt.executeUpdate();
+            stmt.close();
+            
 
             PreparedStatement pstmt = conn.prepareStatement("select * from Student");
 
