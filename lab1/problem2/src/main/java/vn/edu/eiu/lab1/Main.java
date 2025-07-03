@@ -29,6 +29,14 @@ public class Main {
             stmt.executeUpdate();
             stmt.close();
             
+            //Update data into table
+            var stringUpdateSQL = "update student set GPA=? where ID = ?";
+            PreparedStatement updateStmt = conn.prepareStatement(stringUpdateSQL);
+            updateStmt.setDouble(1, 4);
+            updateStmt.setString(2, "S005");
+            updateStmt.executeUpdate();
+            updateStmt.close();
+            
 
             PreparedStatement pstmt = conn.prepareStatement("select * from Student");
 
