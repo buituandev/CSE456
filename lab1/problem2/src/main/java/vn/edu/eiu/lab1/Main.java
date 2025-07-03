@@ -10,7 +10,7 @@ public class Main {
         try {
             String url = "jdbc:mysql://localhost:3306/cse456_q4_2025";
             var user = "root";
-            var password = "tuansql2003";
+            var password = "admin123";
 
             //Đối với Java mới thì Driver sẽ được tự động dò tìm trong URL mà ko cần lệnh này.
             //Class.forName("com.mysql.cj.jdbc.Driver");
