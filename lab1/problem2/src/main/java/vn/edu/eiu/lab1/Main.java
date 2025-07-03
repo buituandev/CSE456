@@ -41,7 +41,9 @@ public class Main {
             var stringDeleteSQL = "delete from student where ID = ?";
             var deleteStmt = conn.prepareStatement(stringDeleteSQL);
             deleteStmt.setString(1, "S005");
-            deleteStmt.executeUpdate();
+            int rowsAffected = deleteStmt.executeUpdate();
+            System.out.println("Deleted rows affected: " + rowsAffected);
+            deleteStmt.close();
             
 
             PreparedStatement pstmt = conn.prepareStatement("select * from Student");
