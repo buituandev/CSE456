@@ -2,6 +2,7 @@ package vn.edu.eiu.lab3.repository;
 
 import jakarta.persistence.EntityManager;
 import vn.edu.eiu.lab3.entity.Major;
+import vn.edu.eiu.lab3.entity.School;
 import vn.edu.eiu.lab3.infra.JpaUtil;
 
 import java.util.List;
@@ -30,6 +31,11 @@ public class MajorRepo {
             major = em.find(Major.class, major.getMajorId());
         }
         if (major != null) {
+            School school = em.find(School.class, major.getSchool().getSchoolId());
+            if (school != null) {
+                school.getMajors().remove(major);
+                major.setSchool(null);
+            }
             em.remove(major);
         }
         em.getTransaction().commit();
@@ -49,7 +55,7 @@ public class MajorRepo {
         em.close();
         return majors;
     }
-    
+
     public static List<Major> findByName(String majorName) {
         EntityManager em = JpaUtil.getEntityManager();
         var majors = em.createQuery("SELECT m FROM Major m WHERE m.majorName LIKE :name", Major.class)

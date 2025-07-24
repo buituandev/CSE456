@@ -1,6 +1,8 @@
 package vn.edu.eiu.lab3.repository;
 
 import jakarta.persistence.EntityManager;
+import vn.edu.eiu.lab3.entity.Major;
+import vn.edu.eiu.lab3.entity.School;
 import vn.edu.eiu.lab3.entity.Student;
 import vn.edu.eiu.lab3.infra.JpaUtil;
 
@@ -30,6 +32,16 @@ public class StudentRepo {
             student = em.find(Student.class, student.getId());
         }
         if (student != null) {
+            Major major = em.find(Major.class, student.getMajor().getMajorId());
+            if (major != null) {
+                major.getStudents().remove(student);
+                student.setMajor(null);
+            }
+            School school = em.find(School.class, student.getSchool().getSchoolId());
+            if (school != null) {
+                school.getStudents().remove(student);
+                student.setSchool(null);
+            }
             em.remove(student);
         }
         em.getTransaction().commit();

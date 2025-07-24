@@ -1,10 +1,7 @@
 package vn.edu.eiu.lab3.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,22 +22,22 @@ public class School {
 
     @Column(name = "Location", columnDefinition = "VARCHAR(100)")
     private String location;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "school")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "school")
     private List<Student> students = new ArrayList<>();
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "school")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "school")
     private List<Major> majors = new ArrayList<>();
-    
+
     public School(String schoolId, String schoolName, String location) {
         this.schoolId = schoolId;
         this.schoolName = schoolName;
         this.location = location;
     }
-    
+
     public void addStudent(Student student) {
         students.add(student);
         student.setSchool(this);
     }
-    
+
     public void addMajor(Major major) {
         majors.add(major);
         major.setSchool(this);

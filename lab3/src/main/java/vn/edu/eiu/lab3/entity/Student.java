@@ -45,11 +45,4 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
         this.enrollmentYear = enrollmentYear;
     }
-
-    public void setMajor(Major major) {
-        this.major = major;
-        if (major != null) {
-            major.getSchool().addStudent(this);
-        }
-    }
 }

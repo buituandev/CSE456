@@ -24,7 +24,7 @@ public class Major {
     @JoinColumn(name = "SchoolId")
     private School school;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "major")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "major")
     private List<Student> students = new ArrayList<>();
 
     public Major(String majorId, String majorName) {

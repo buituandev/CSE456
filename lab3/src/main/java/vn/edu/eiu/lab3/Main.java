@@ -29,41 +29,46 @@ public class Main {
         sc2.addMajor(ebsMajor);
         sc3.addMajor(meMajor);
 
-        cseMajor.addStudent(s1);
-        ebsMajor.addStudent(s2);
+        cseMajor.addStudent(s2);
+        ebsMajor.addStudent(s1);
         meMajor.addStudent(s3);
         meMajor.addStudent(s4);
+        
+        sc1.addStudent(s1);
+        sc2.addStudent(s2);
+        sc3.addStudent(s3);
+        sc3.addStudent(s4);
 
         SchoolService schoolService = new SchoolService();
         schoolService.createSchool(sc1);
         schoolService.createSchool(sc2);
         schoolService.createSchool(sc3);
 
-        MajorService majorService = new MajorService();
-
-        StudentService studentService = new StudentService();
-
-        Student updateS1 = studentService.findStudentsByName(s1.getFullName()).getFirst();
-        sc1.setLocation("Ho Chi Minh City");
-        cseMajor.setMajorName("Ky thuat phan mem");
-        updateS1.setMajor(ebsMajor);
-
-        schoolService.updateSchool(sc1);
-        majorService.updateMajor(cseMajor);
-        studentService.updateStudent(updateS1);
-
-        Student deletes1 = studentService.findStudentsByName(s1.getFullName()).getFirst();
-        studentService.deleteStudent(deletes1);
-        majorService.deleteMajor(cseMajor);
-        schoolService.deleteSchool(sc1);
-
-        System.out.println("All Schools:");
-        schoolService.getAllSchools().forEach(System.out::println);
-
-        System.out.println("All Majors:");
-        majorService.getAllMajors().forEach(System.out::println);
-
-        System.out.println("All Students:");
-        studentService.getAllStudents().forEach(System.out::println);
+//        MajorService majorService = new MajorService();
+//
+//        StudentService studentService = new StudentService();
+//        sc1 = schoolService.getSchoolById("EIU");
+//        sc1.setLocation("Ho Chi Minh City aa");
+//        cseMajor.setMajorName("Ky thuat phan memaa");
+//        s1.setMajor(ebsMajor);
+////        sc1.getStudents().removeFirst();
+//
+//        schoolService.updateSchool(sc1);
+////        majorService.updateMajor(cseMajor);
+////        studentService.updateStudent(s1);
+//
+//        Student deletes1 = studentService.findStudentsByName(s1.getFullName()).getFirst();
+//        studentService.deleteStudent(deletes1);
+//        majorService.deleteMajor(cseMajor);
+////        schoolService.deleteSchool(sc1);
+//
+//        System.out.println("All Schools:");
+//        schoolService.getAllSchools().forEach(System.out::println);
+//
+//        System.out.println("All Majors:");
+//        majorService.getAllMajors().forEach(System.out::println);
+//
+//        System.out.println("All Students:");
+//        studentService.getAllStudents().forEach(System.out::println);
     }
 }
