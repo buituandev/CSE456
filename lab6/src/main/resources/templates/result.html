@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Result</title>
+</head>
+<body>
+<h1 th:text="${pmsg}"></h1>
+<p th:text="'Id: ' + ${student.id}"></p>
+<p th:text="'Name: ' + ${student.name}"></p>
+<p th:text="'Year of birth: ' + ${student.yob}"></p>
+<p th:text="'GPA: ' + ${student.gpa}"></p>
+</body>
+</html>
