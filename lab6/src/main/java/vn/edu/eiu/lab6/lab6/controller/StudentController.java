@@ -137,5 +137,30 @@ public class StudentController {
 
         return "redirect:/students"; // Chuyển sang đường link khác, không phải là HTML
     }
+    
+    @PostMapping("students/new")
+    public String creatStudent(@ModelAttribute Student student){
+        initStudent.getStudentList().add(student);
+        return "redirect:/students";
+    }
 
+    @GetMapping("/students/new")
+    public String showCreateForm(Model model) {
+        model.addAttribute("student", new Student());
+        return "student-create";
+    }
+    
+    @PostMapping("/students/delete/{id}")
+    public String deleteStudent(@PathVariable int id) {
+        Student student = null;
+        for (var s :  initStudent.getStudentList()) {
+            if (s.getId() == id) {
+                student = s;
+                break;
+            }
+        }
+        
+        initStudent.getStudentList().remove(student);
+        return "redirect:/students";
+    }
 }
