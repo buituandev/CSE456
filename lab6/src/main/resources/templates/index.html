@@ -6,8 +6,28 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Homepage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1>This is homepage</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center mb-4">School Management System</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Management Options</h5>
+                    <div class="d-grid gap-3">
+                        <a href="/students" class="btn btn-primary btn-lg">
+                            <i class="bi bi-people"></i> Student Management
+                        </a>
+                        <a href="/majors" class="btn btn-success btn-lg">
+                            <i class="bi bi-book"></i> Major Management
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
