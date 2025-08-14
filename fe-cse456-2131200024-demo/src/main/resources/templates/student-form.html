@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${formMode=='edit'? 'Edit student' : 'Add student'}">Edit List</title>
+</head>
+<body>
+<h1 th:text="${formMode=='edit'? 'Edit student' : 'Add new student'}">Edit List</h1>
+<form action="/student/form" th:object="${student}" method="post">
+    <p>
+        <label for="id">Id</label>
+        <!--        <input type="text" name="id" id="id" th:value="${student.id}">-->
+        <!-- th:field tuong duong voi name + value  -->
+        <input type="text" id="id" th:field="*{id}" placeholder="Enter student id (unique)"
+               th:readonly="${formMode=='edit'}" required
+               th:style="${formMode=='edit'} ? 'color: gray' : 'color: black'"
+        >
+        <span th:errors="*{id}" style="color: red"></span>
+    </p>
+    <p>
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Enter name" required>
+        <span th:errors="*{name}" style="color: red"></span>
+    </p>
+    <p>
+        <label for="yob">Year of birth</label>
+        <input type="number" id="yob" th:field="*{yob}" placeholder="Enter year of birth"/>
+        <span th:errors="*{yob}" style="color: red"></span>
+    </p>
+    <p>
+        <label for="gpa">GPA</label>
+        <input type="number" id="gpa" th:field="*{gpa}" placeholder="Enter GPA"/>
+        <span th:errors="*{gpa}" style="color: red"></span>
+    </p>
+    <p>
+        <label for="major">Major</label>
+        <select id="major" th:field="*{major.id}">
+            <option th:each="m : ${majorList}" th:value="${m.id}" th:text="${m.name}"
+                    th:selected="${student.major != null ? m.id == student.major.id : m.id == majorList[0].id}"></option>
+        </select>
+    </p>
+    <p>
+        <button type="submit">Submit</button>
+        <input type="hidden" name="formMode" th:value="${formMode}">
+    </p>
+</form>
+</body>
+</html>
